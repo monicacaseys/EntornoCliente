@@ -27,5 +27,8 @@ function calcularResultado() {
     // Mostrar el resultado en el elemento con id "resultado"
     document.getElementById("resultado").textContent = "Resultado: " + resultado;
     console.log("Resultado: " + resultado);
+    console.log("num1: " + numero1);
+    console.log("num2: " + numero2);
+
   }
  
