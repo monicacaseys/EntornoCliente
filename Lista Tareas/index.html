@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista De Tareas</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Lista de Tareas</h1>
+
+        <form id="tareaForm" class="form-group mx-auto">
+            <div class="input-group mb-3">
+                <input type="text" id="nuevaTarea" class="form-control" placeholder="Agrega una nueva tarea">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Agregar tarea</button>
+                </div>
+            </div>
+        </form>
+        <ul id="listaTareas" class="list-group">
+            <!-- Aqui se muestran las tareas-->
+        </ul>
+    </div>
+
+    <script src="js/bootstrap.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
