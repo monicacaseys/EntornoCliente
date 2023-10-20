@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Piedra, Papel o Tijeras con Bootstrap</title>
+    <!--enlaza el css de bootstrap-->
+    <link rel="stylesheet" href="css/bootstrap.css">
+</head>
+
+<body>
+    <div class="container text-center mt-5">
+        <h1>Juego de Piedra, Papel o Tijeras</h1>
+        <table class="table">
+            <tr>
+                <td class="text-center">
+                    <!--carga la imagen correspondiente-->
+                    <img src="p.png">
+                </td>
+                <td class="text-center">
+                    <!--carga la imagen correspondiente-->
+                    <img src="papl.png" width="350px" height="250px">
+                </td>
+                <td class="text-center">
+                    <!--carga la imagen correspondiente-->
+                    
+                    <img src="t.png">
+                </td>
+            </tr>
+            <tr>
+                <td class="text-center">
+                    <button
+                       onclick="jugar('piedra')" class="btn btn-primary" value="piedra">Piedra</button><!--Completa los botones con lo necesario para que sea interactivos-->
+                </td>
+                <td class="text-center">
+                    <button
+                    onclick="jugar('papel')" class="btn btn-primary" value="papel">Papel</button><!--Completa los botones con lo necesario para que sea interactivos-->
+                </td>
+                <td class="text-center">
+                    <button
+                    onclick="jugar('tijeras')" class="btn btn-primary" value="tijeras">Tijeras</button><!--Completa los botones con lo necesario para que sea interactivos-->
+                </td>
+            </tr>
+        </table>
+        <!--Aqui debemos insertar las imagenes del resultado de la elección de la máquina y el jugador-->
+
+        <div id="ganador">
+            <!--Aqui ponemos si se gana, o si se pierde-->
+        </div>
+    </div>
+
+    <!--enlaza tu script y el de bootstrap-->
+    <script src="js/bootstrap.js"></script> 
+    <script src="juego.js"></script>
+</body>
+
+</html>
