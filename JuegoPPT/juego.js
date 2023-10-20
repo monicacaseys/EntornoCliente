@@ -10,7 +10,7 @@ function jugar (eleccionUsuario){
     var ganador=kienGana(eleccionUsuario,eleccionMakina);
     document.getElementById('ganador').innerHTML = ganador;
 
-    
+    //mostrar elecciones
 
 }
 
