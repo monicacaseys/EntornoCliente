@@ -1,7 +1,11 @@
 'use strict';
-var arrayNumbers = [10, 8, 9, 5, 3, 78, 23];
-var orden = arrayNumbers.sort((a,b)=>{
-    return b-a;
- }); 
-console.log(orden);
-// solit sort join: ejercicio pedir numeros por consola y despues ordenalos
+var texto = prompt("Escribe números separados por espacios y los ordeno");
+var arrayNumbers = texto.split(" ");
+
+// Utiliza una función de comparación personalizada en sort
+var orden = arrayNumbers.sort(function(a, b) {
+    return parseFloat(b) - parseFloat(a);
+});
+
+var salida = orden.join(" ");
+console.log(salida);
