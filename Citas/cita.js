@@ -45,12 +45,54 @@ function validarFecha() {
 
 function validarHora() {
   var patronHora = /^\d{2}:\d{2}$/;
-  if (!patronHora.test(hora.value)) {
+  var horaIngresada = hora.value;
+
+  if (!patronHora.test(horaIngresada)) {
     errorHora.innerHTML = "Introduzca una hora válida (hh:mm)";
   } else {
     errorHora.innerHTML = "";
+
+    var [horaValor, minutosValor] = horaIngresada.split(':');
+
+    // Convertir los valores a números para comparar
+    var horaNumero = parseInt(horaValor);
+    var minutosNumero = parseInt(minutosValor);
+
+    // Verificar si está en la franja horaria
+    if ((horaNumero >= 10 && horaNumero < 14) || (horaNumero == 18 && minutosNumero >= 30) || (horaNumero == 19 && minutosNumero === 0)) {
+
+      // Crear fecha completa para la cita. 'T' separa la fecha de la hora. getTime() representa esa fecha en milisegundos
+      var fechaHoraCita = new Date(fecha.value + "T" + horaIngresada + ":00").getTime();
+
+      // Actualizar el reloj cada segundo
+      var intervalo = setInterval(actualizarReloj, 1000);
+
+      function actualizarReloj() {
+        var ahora = new Date().getTime();
+        var diferencia = fechaHoraCita - ahora;
+        var horas = Math.floor(diferencia / (1000 * 60 * 60));
+        var minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+        var segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+
+        relojElement.innerHTML = "Tiempo restante: " + horas + "h " + minutos + "m " + segundos + "s ";
+
+        if (diferencia === 600000) {
+          alert("Quedan 10 minutos para tu cita!");
+
+        }
+        if (diferencia < 0) {
+          clearInterval(intervalo);
+          relojElement.innerHTML = "¡Es hora de la cita!";
+        }
+      }
+    } else {
+      errorHora.innerHTML = "Introduzca un horario válido: de 10 a 14 y de 18:30 a 20:00";
+    }
   }
 }
+
+
+
 
 function cargarTipoCita() {
   formulario.appendChild(selectTipoCita);
@@ -72,18 +114,23 @@ function cargarTipoCita() {
 function cargarTiempoEstimado() {
   relojElement.id = "reloj";
   document.body.appendChild(relojElement);
-  duracion.parentNode.insertBefore(errorTiempo, duracion.nextSibling); //duracion.parentNode.insertBefore(nuevoNodo, nodoDeReferencia.nextSibling);
 }
 
 function validarDuracion() {
   var tiempo = parseInt(duracion.value);
+  duracion.parentNode.insertBefore(errorTiempo, duracion.nextSibling); //duracion.parentNode.insertBefore(nuevoNodo, nodoDeReferencia.nextSibling);
 
   if (isNaN(tiempo) || tiempo < 5 || tiempo > 60) {
     errorTiempo.id = "errorTiempo";
     errorTiempo.style.color = "red";
     errorTiempo.textContent = "La duración debe estar entre 5 y 60 minutos.";
   } else {
-    errorTiempo.textContent = "";
+    
+    if(tiempo % 15 == 0){
+      errorTiempo.textContent = "";
+    }else{
+      errorTiempo.textContent = "El tiempo tiene que ser multiplo de 15";
+    }
   }
 }
 
@@ -93,15 +140,11 @@ formulario.addEventListener("submit", function (event) {
   if (nombre.value === "" || fecha.value === "" || hora.value === "") {
     alert("Por favor, complete correctamente los campos del formulario de reserva");
   } else {
-    // Crea la fecha completa para la cita
-    var fechaHoraCita = new Date(fecha.value + "T" + hora.value + ":00").getTime();
 
-    // Actualizar el reloj cada segundo
-    var intervalo = setInterval(actualizarReloj, 1000);
 
     Swal.fire({
       title: "Datos de la Cita",
-      html: "Reserva realizada correctamente con los siguientes datos:\n" +
+      html: "Reserva realizada correctamente con los siguientes datos:\n" + "<br/>" +
         "Nombre de la reserva: " + nombre.value + "<br/>" +
         "Fecha de la reserva: " + fecha.value + "<br/>" +
         "Hora de la reserva:  " + hora.value + "<br/>" +
@@ -110,19 +153,6 @@ formulario.addEventListener("submit", function (event) {
       icon: "success"
     });
 
-    function actualizarReloj() {
-      var ahora = new Date().getTime();
-      var diferencia = fechaHoraCita - ahora;
-      var horas = Math.floor(diferencia / (1000 * 60 * 60));
-      var minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-      var segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-      relojElement.innerHTML = "Tiempo restante: " + horas + "h " + minutos + "m " + segundos + "s ";
-
-      if (diferencia < 0) {
-        clearInterval(intervalo);
-        relojElement.innerHTML = "¡Es hora de la cita!";
-      }
-    }
   }
 });
