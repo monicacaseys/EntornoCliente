@@ -16,6 +16,8 @@ var boton = document.getElementById("confirmar");
 //si en vez de crear el es span en el html lo creo aqui los mensajes de error: var errorNombre = document.createElement("span");
 
 
+var citasExistente = [];
+
 document.addEventListener("DOMContentLoaded", function () {
   cargarTipoCita();
   cargarTiempoEstimado();
@@ -59,36 +61,80 @@ function validarHora() {
     var minutosNumero = parseInt(minutosValor);
 
     // Verificar si está en la franja horaria
-    if ((horaNumero >= 10 && horaNumero < 14) || (horaNumero == 18 && minutosNumero >= 30) || (horaNumero == 19 && minutosNumero === 0)) {
+    if ((horaNumero >= 10 && horaNumero < 14) || (horaNumero == 18 && minutosNumero >= 30) || (horaNumero < 20 )) {
 
-      // Crear fecha completa para la cita. 'T' separa la fecha de la hora. getTime() representa esa fecha en milisegundos
-      var fechaHoraCita = new Date(fecha.value + "T" + horaIngresada + ":00").getTime();
+      // Verificar disponibilidad
+      if (validarDisponibilidad(fecha.value, horaIngresada, parseInt(duracion.value))) {
+        // Crear fecha completa para la cita. 'T' separa la fecha de la hora. getTime() representa esa fecha en milisegundos
+        var fechaHoraCita = new Date(fecha.value + "T" + horaIngresada + ":00").getTime();
 
-      // Actualizar el reloj cada segundo
-      var intervalo = setInterval(actualizarReloj, 1000);
+        // Actualizar el reloj cada segundo
+        var intervalo = setInterval(actualizarReloj, 1000);
 
-      function actualizarReloj() {
-        var ahora = new Date().getTime();
-        var diferencia = fechaHoraCita - ahora;
-        var horas = Math.floor(diferencia / (1000 * 60 * 60));
-        var minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-        var segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
+        var alertaMostrada = false;  
 
-        relojElement.innerHTML = "Tiempo restante: " + horas + "h " + minutos + "m " + segundos + "s ";
+        function actualizarReloj() {
+          var ahora = new Date().getTime();
+          var diferencia = fechaHoraCita - ahora;
+          var horas = Math.floor(diferencia / (1000 * 60 * 60));
+          var minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
+          var segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-        if (diferencia === 600000) {
-          alert("Quedan 10 minutos para tu cita!");
+          relojElement.innerHTML = "Tiempo restante: " + horas + "h " + minutos + "m " + segundos + "s ";
 
+          if (diferencia <= 600000 && diferencia > 590000 && !alertaMostrada) {
+            Swal.fire({
+              title: "Quedan 10 minutos para tu cita!",
+              icon: "info"
+            });
+        
+            alertaMostrada = true;  // Marcar la alerta como mostrada
+          }
+          
+          if (diferencia < 0) {
+            clearInterval(intervalo);
+            relojElement.innerHTML = "¡Es hora de la cita!";
+          }
         }
-        if (diferencia < 0) {
-          clearInterval(intervalo);
-          relojElement.innerHTML = "¡Es hora de la cita!";
-        }
+      } else {
+        errorHora.innerHTML = "La hora seleccionada no está disponible. Por favor, elige otra hora.";
       }
     } else {
       errorHora.innerHTML = "Introduzca un horario válido: de 10 a 14 y de 18:30 a 20:00";
     }
   }
+}
+
+// Función para convertir la hora a minutos
+function convertirAHorasMinutos(hora) {
+  var [horaValor, minutosValor] = hora.split(':');
+  return parseInt(horaValor) * 60 + parseInt(minutosValor);
+}
+
+function validarDisponibilidad(fechaSeleccionada, horaSeleccionada, duracionSeleccionada) {
+  // Convierte la hora seleccionada y la duración a minutos para facilitar la comparación
+  var horaInicioSeleccionada = convertirAHorasMinutos(horaSeleccionada);
+  var duracionMinutos = parseInt(duracionSeleccionada);
+
+  // Itera a través de las citas existentes y verifica si hay conflictos
+  for (var i = 0; i < citasExistente.length; i++) {
+    var cita = citasExistente[i];
+
+    if (cita.fecha === fechaSeleccionada) {
+      var horaInicioExistente = convertirAHorasMinutos(cita.horaInicio);
+      var horaFinExistente = horaInicioExistente + cita.duracion;
+
+      // Verifica si hay superposición de horarios
+      if (
+        (horaInicioSeleccionada >= horaInicioExistente && horaInicioSeleccionada < horaFinExistente) ||
+        (horaInicioExistente >= horaInicioSeleccionada && horaInicioExistente < horaInicioSeleccionada + duracionMinutos)
+      ) {
+        return false; // Existe un conflicto de horario
+      }
+    }
+  }
+
+  return true; // No hay conflictos de horario, la cita está disponible
 }
 
 
@@ -134,25 +180,38 @@ function validarDuracion() {
   }
 }
 
+
+// Función para agregar una cita a la lista
+function agregarCita(fecha, horaInicio, duracion) {
+  citasExistente.push({ fecha, horaInicio, duracion });
+}
+
+
+// Evento que se ejecuta cuando se confirma la reserva
 formulario.addEventListener("submit", function (event) {
   event.preventDefault();
 
   if (nombre.value === "" || fecha.value === "" || hora.value === "") {
     alert("Por favor, complete correctamente los campos del formulario de reserva");
   } else {
+    var duracionCita = parseInt(duracion.value);
 
+    if (validarDisponibilidad(fecha.value, hora.value, duracionCita)) {
+      // Agregar la cita a la lista de citas existentes
+      agregarCita(fecha.value, hora.value, duracionCita);
 
-    Swal.fire({
-      title: "Datos de la Cita",
-      html: "Reserva realizada correctamente con los siguientes datos:\n" + "<br/>" +
-        "Nombre de la reserva: " + nombre.value + "<br/>" +
-        "Fecha de la reserva: " + fecha.value + "<br/>" +
-        "Hora de la reserva:  " + hora.value + "<br/>" +
-        "Duración:  " + duracion.value + "<br/>" +
-        "Gracias por realizar la reserva",
-      icon: "success"
-    });
-
-
+      Swal.fire({
+        title: "Datos de la Cita",
+        html: "Reserva realizada correctamente con los siguientes datos:\n" + "<br/>" +
+          "Nombre de la reserva: " + nombre.value + "<br/>" +
+          "Fecha de la reserva: " + fecha.value + "<br/>" +
+          "Hora de la reserva:  " + hora.value + "<br/>" +
+          "Duración:  " + duracion.value + "<br/>" +
+          "Gracias por realizar la reserva",
+        icon: "success"
+      });
+    } else {
+      alert("La hora seleccionada no está disponible. Por favor, elige otra hora.");
+    }
   }
 });
