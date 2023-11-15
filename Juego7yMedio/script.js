@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const usuarioInputDiv = document.getElementById("usuarioInput");
     const juegoDiv = document.getElementById("juego");
     const puntuacionDiv = document.getElementById("puntuacion");
     const cartasDiv = document.getElementById("cartas");
@@ -9,18 +8,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const nombreInput = document.getElementById("nombre");
     const edadInput = document.getElementById("edad");
   
+    let partidasJugadas = 0;
     let puntuacion;
     let cartas;
   
+    juegoDiv.style.display = "none";
+
     function comenzarJuego() {
       puntuacion = 0;
       cartas = [];
+      partidasJugadas++;
   
       const nombre = nombreInput.value.trim();
       const edad = parseInt(edadInput.value);
   
-      if (nombre && /^[a-zA-Z]+$/.test(nombre) && !isNaN(edad) && edad >= 18) {
-        usuarioInputDiv.style.display = "none";
+      if (nombre && /^[a-zA-Z0-9]+$/.test(nombre) && !isNaN(edad) && edad >= 18) {
         juegoDiv.style.display = "block";
       } else {
         alert("Debes ingresar un nombre válido (solo letras) y tener al menos 18 años.");
@@ -31,13 +33,15 @@ document.addEventListener("DOMContentLoaded", function () {
     function pedirCarta() {
         const nuevaCarta = obtenerCartaAleatoria();
         cartas.push(nuevaCarta);
-        actualizarPuntuacion();
         mostrarCarta(nuevaCarta);
+        actualizarPuntuacion();
       
         if (puntuacion > 7.5) {
           mostrarResultado("¡Te has pasado de 7.5! Has perdido.");
         } else if (puntuacion === 7.5) {
           mostrarResultado("¡Felicidades, has llegado a 7.5! ¡Has ganado!");
+        } else {
+          
         }
       }
       
@@ -47,29 +51,39 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   
     function obtenerCartaAleatoria() {
-      const cartasPosibles = [1, 2, 3, 4, 5, 6, 7, 0.5];
+      const cartasPosibles = [1, 2, 3, 4, 5, 6, 7, "Rey", "Caballo", "Sota"];
       const cartaAleatoria = cartasPosibles[Math.floor(Math.random() * cartasPosibles.length)];
-      return cartaAleatoria;
+      
+      // Ajustar el valor de la carta según la nueva lógica
+      switch (cartaAleatoria) {
+        case "Rey":
+        case "Caballo":
+        case "Sota":
+          return 0.5;
+        default:
+          return cartaAleatoria;
+      }
     }
+    
   
     function mostrarCarta(carta) {
+      cartasDiv.innerHTML = "";
       const cartaImagen = document.createElement("img");
       cartaImagen.src = `carta_${carta}.png`; // Asegúrate de tener las imágenes con los nombres correctos
       cartasDiv.appendChild(cartaImagen);
     }
-  
+  //duda
     function actualizarPuntuacion() {
       puntuacion = cartas.reduce((total, carta) => total + carta, 0);
-      puntuacionDiv.textContent = `Puntuación: ${puntuacion.toFixed(1)}`;
+      puntuacionDiv.textContent = `Puntuación: ${puntuacion}`;
     }
   
     function mostrarResultado(mensaje) {
-      alert(mensaje);
-      reiniciarJuego();
+      alert(`${mensaje}\nPuntuación total en esta partida: ${puntuacion}\nPartidas jugadas: ${partidasJugadas}`);
+      reiniciarJuego(); 
     }
   
     function reiniciarJuego() {
-      usuarioInputDiv.style.display = "block";
       juegoDiv.style.display = "none";
       puntuacionDiv.textContent = "Puntuación: 0";
       cartasDiv.innerHTML = "";
