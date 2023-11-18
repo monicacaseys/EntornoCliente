@@ -1,0 +1,57 @@
+/* Estilos para el contenedor del nombre y edad */
+body {
+    display: flex;
+
+  }
+#usuarioInput {
+    background-color: #808080; /* Gris */
+    padding: 20px;
+    margin-right: 50px;
+    
+  }
+  
+  /* Estilos para los campos de nombre y edad y el botón */
+  #nombre,
+  #edad {
+    background-color: #ffffff; /* Blanco */
+    margin-bottom: 10px;
+  }
+  
+  #comenzarBtn {
+    background-color: #0000ff; /* Azul */
+    color: #ffffff; /* Blanco */
+  }
+  
+  /* Estilos para el contenedor del juego */
+ 
+  
+/* Estilos para el contenedor del juego */
+#juego {
+    background-color: #ff0000; /* Rojo */
+    border: 2px solid #800000; /* Borde rojo oscuro */
+    padding: 20px;
+    display: inline-block;
+  }
+  
+  /* Estilos para la puntuación */
+  #puntuacion {
+    margin-bottom: 10px;
+  }
+  
+  #puntuacionValue {
+    background-color: #ffffff; /* Blanco */
+    color: #000000; /* Negro */
+  /* Para que ocupe todo el ancho y quede en una nueva línea */
+  }
+  
+  
+  /* Estilos para los botones de pedir carta y plantarse */
+  #pedirCartaBtn {
+    background-color: #0000ff; /* Azul */
+    margin-right: 10px;
+  }
+  
+  #plantarseBtn {
+    background-color: #ff0000; /* Rojo */
+  }
+  

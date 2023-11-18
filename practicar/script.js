@@ -81,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function reiniciarJuego() {
         juegoDiv.style.display = "none";
+        puntuacionValorDiv.textContent="0";
         cartasDiv.innerHTML = "";
     }
 
