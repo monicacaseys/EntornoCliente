@@ -1,0 +1,15 @@
+#drop-zone {
+    width: 300px;
+    height: 200px;
+    border: 2px dashed #aaa;
+    padding: 20px;
+    text-align: center;
+    margin: 20px auto;
+}
+
+.draggable-item {
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    cursor: move;/*establecemos que cuando el cursor pase por la zona cambie a icono de mover*/
+}

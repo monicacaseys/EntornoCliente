@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento "drop" con Imágenes en JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--ondrop se disparará cuando soltemos el elemento-->
+    <!--ondragover se dispara cuando un elemento es arrastrado sobre el elemento-->
+    <!--ondragleave se dispara cuando salimos de la zona de arrastre-->
+    <div id="drop-zone" ondrop="soltar(event)" ondragover="mover(event)" ondragleave="fondo(event)">
+        Arrastra y suelta aquí
+    </div>
+
+    <!--draggable es un atributo booleando que indica si un elemento es arrastrable o no
+    ondragstart en el momento en que comienza a arrastrarse el objeto llamamos a la función arrastrar-->
+    <img src="tristeza.jpeg" id="tristeza" class="draggable-item" draggable="true" ondragstart="arrastrar(event)">
+    <img src="alegria.jpeg" id ="alegria" class="draggable-item" draggable="true" ondragstart="arrastrar(event)">
+    <img src="asco.jpeg" id="asco" class="draggable-item" draggable="true" ondragstart="arrastrar(event)">
+    <img src="miedo.jpeg" id="miedo" class="draggable-item" draggable="true" ondragstart="arrastrar(event)">
+    <img src="ira.jpeg" id="ira" class="draggable-item" draggable="false" ondragstart="arrastrar(event)">
+    <script src="script.js"></script>
+</body>
+
+</html>
