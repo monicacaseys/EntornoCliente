@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evento "drop" con Imágenes en JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!--ondrop se disparará cuando soltemos el elemento-->
+    <!--ondragover se dispara cuando un elemento es arrastrado sobre el elemento-->
+    <!--ondragleave se dispara cuando salimos de la zona de arrastre-->
+    <div id="caras" class="drop-zone" ondrop="soltar(event, 'caras')" ondragover="permitirDrop(event)">
+        Caras
+    </div>
+    <div id="comida" class="drop-zone" ondrop="soltar(event, 'comida')" ondragover="permitirDrop(event)">
+        Comida
+    </div>
+    <div id="objetos" class="drop-zone" ondrop="soltar(event, 'objetos')" ondragover="permitirDrop(event)">
+        Objetos
+    </div>
+
+    <div id="puntuacion">Puntuación: <span id="puntos">0</span></div>
+
+    <div id="emojis">
+    <!--draggable es un atributo booleando que indica si un elemento es arrastrable o no
+    ondragstart en el momento en que comienza a arrastrarse el objeto llamamos a la función arrastrar-->
+    
+    <div class="draggable-item" draggable="true" ondragstart="arrastrar(event)">🍎</div>
+    <div class="draggable-item" draggable="true" ondragstart="arrastrar(event)">🍕</div>
+    <div class="draggable-item" draggable="true" ondragstart="arrastrar(event)">🍦</div>
+    <div class="draggable-item" draggable="true" ondragstart="arrastrar(event)">😊</div>
+    <div class="draggable-item" draggable="true" ondragstart="arrastrar(event)">😎</div>
+    <div class="draggable-item" draggable="true" ondragstart="arrastrar(event)">😂</div>
+    <div class="draggable-item" draggable="true" ondragstart="arrastrar(event)">🚗</div>
+    <div class="draggable-item" draggable="true" ondragstart="arrastrar(event)">📱</div>
+    <div class="draggable-item" draggable="true" ondragstart="arrastrar(event)">🎮</div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+
+</html>

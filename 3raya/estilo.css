@@ -1,0 +1,123 @@
+body {
+    margin: 0;
+    padding: 0;
+
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px;
+}
+
+
+.box {
+    width: 600px;
+    height: 400px;
+    padding: 20px;
+    margin: 10px;
+    text-align: center;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+}
+
+.box:hover {
+    cursor: pointer;
+    border: 1px solid black;
+    box-shadow: 0px 0px 10px 3px rgba(0, 0, 0, 0.3);
+}
+
+.box-content {
+    cursor: pointer;
+}
+
+
+
+element.style {
+    background-color: transparent;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+
+
+
+a {
+    font-style: inherit;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-size: 200%;
+    font-weight: bold;
+    color: black;
+    text-decoration: none;
+
+}
+
+
+
+h1 {
+    font-style: oblique;
+    font-family: fantasy;
+    text-align: center;
+ 
+}
+
+#container {
+    width: 360px;
+    height: 360px;
+    margin: 0 auto;
+    border: 3px solid rgba(68, 0, 255, 0.945);
+    border-radius: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+
+}
+
+.square {
+    width: 100px;
+    height: 100px;
+    border: 5px solid black;
+    border-radius: 22px;
+    text-align: center;
+    font-size: 3em;
+    line-height: 100px;
+    box-sizing: border-box;
+    cursor: pointer;
+    margin: 6px;
+    color: rgb(186, 231, 40);
+    background-color: rgba(220, 20, 60, 0.76);
+}
+
+.square:nth-child(3n+1) {
+    margin-left: 0;
+}
+
+.square:first-child:nth-child(3n+1) {
+    margin-left: 5px;
+}
+
+.square:nth-child(-n+3) {
+    margin-top: 5px;
+}
+
+:root {
+    --colorNormal:black;
+    font-size:1rem;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    
+    /* ventajas del REM vs PX: funciona con el zoom
+    el navegador usa REM por defecto en 14 o 16 px dependiendo... */
+    
+}
+
+p, h1, h2, h3 {
+    color:var(--colorNormal);
+}
+

@@ -1,0 +1,17 @@
+.drop-zone {
+    width: auto;
+    height:80px;
+    border: 2px solid #aaa;
+    padding: 20px;
+    margin: 20px auto;
+}
+.drop-zone {
+    display: flex;
+}
+
+.draggable-item {
+    margin-right: 5px; /* Ajusta el espacio entre los emojis */
+}
+#emojis{
+    display: flex;
+}
