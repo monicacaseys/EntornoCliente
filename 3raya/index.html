@@ -11,7 +11,7 @@
 
 <body>
     <h1>Tres en raya</h1>
-	<div id="container">
+	<div id="container"  ondrop="soltar(event)" ondragover="mover(event)" ondragleave="fondo(event)">
 		<div class="square" id="0" onmouseenter="highlightCell('0')" onmouseleave="unhighlightCell('0')"
 			onclick="drawSymbol('0')"></div>
 		<div class="square" id="1" onmouseenter="highlightCell('1')" onmouseleave="unhighlightCell('1')"
