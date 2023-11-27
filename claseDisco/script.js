@@ -1,26 +1,3 @@
-class Disco {
-    constructor(nombre, cantante, año, tipo, localizacion, prestado) {
-      this.nombre = nombre;
-      this.cantante = cantante;
-      this.año = año;
-      this.tipo = tipo;
-      this.localizacion = localizacion;
-      this.prestado = prestado;
-    }
-
-    validarAño() {
-      return this.año >= 1902 && this.año <= 2020;
-    }
-
-    cambiarLocalizacion(nuevaLocalizacion) {
-      this.localizacion = nuevaLocalizacion;
-    }
-
-    comprobarDisponibilidad() {
-      return !this.prestado;
-    }
-  }
-
   let discos = [];
   let mostrarMenu = true;
 
@@ -81,7 +58,7 @@ class Disco {
       listaDiscosContainer.appendChild(discoElement);
     });
 
-    // Desactivar la opción de mostrar el menú después de mostrar el listado
+    // Desactivar la opción de mostrar el menú al mostrar el listado
     mostrarMenu = false;
   }
 
@@ -133,11 +110,19 @@ class Disco {
     }
   }
 
+  function comprobarNum(num){
+    if((isNaN(num) || num ==="" || num === null)){
+      return false;
+    } else{
+      return true;
+    }
+  }
+
   let opcion;
 
   do {
     if (mostrarMenu) {
-      // Mostrar el menú en alert
+      // Mostrar el menú
       alert("Menú:\n1. Añadir un disco\n2. Mostrar el número de discos registrados\n3. Mostrar el listado de discos (Ascendente por Título)\n4. Mostrar el listado de discos (Descendente por Año de Publicación)\n5. Mostrar los discos de un intervalo concreto\n6. Mostrar los discos de un tipo de música concreta\n7. Borrar un disco\n8. Cambiar disco de estantería\n9. Terminar");
       opcion = parseInt(prompt("Ingrese el número de la opción deseada:"));
     } else {
@@ -176,4 +161,4 @@ class Disco {
       default:
         alert("Opción no válida. Intente nuevamente.");
     }
-  } while (opcion !== 9);
+  } while (opcion !== 9 && comprobarNum(opcion));
