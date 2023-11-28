@@ -1,0 +1,47 @@
+.box{
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    margin: 20px;
+}
+
+#cuadro1:hover{
+    background-color: blue;
+
+}
+
+#cuadro2{
+    transition: background 5s linear;
+}
+#cuadro2:hover{
+    background-color: green;
+}
+
+#cuadro3{
+    background-color:gray;
+    animation:
+    mianimacion 5s infinite,
+    mianimacion2 5s 2;
+}
+@keyframes mianimacion2{
+    0%{
+        transform:traslateX(0)
+    }
+    100%{
+        transform: translateX(200px);
+    }
+}
+@keyframes mianimacion{
+   25%{
+    background-color: gray;
+   } 
+   50%{
+    background-color: pink;
+   }
+   77%{
+    background-color: tomato;
+   }
+   100%{
+    background-color: yellowgreen;
+   }
+}
