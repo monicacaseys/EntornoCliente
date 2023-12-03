@@ -1,18 +1,24 @@
 "use strict;"
 
-const fondoColor=document.getElementById('bgColor').value;
-const fontSize=document.getElementById('fontSize').value;
+//valores alamcenados el localStorGE
+  // Aplicar preferencias almacenadas o valores predeterminados
+  document.getElementById('bgColor').value = localStorage.getItem('bgColor') || '#ffffff'; // blanco predeterminado
+  document.getElementById('fontSize').value = localStorage.getItem('fontSize') || 16; // tamaño predeterminado
 
-function applyPreferences(){
+// Aplicar cambios al cargar la página
+applyPreferences();
 
+  function applyPreferences(){
+// Obtener los valores seleccionados
+    var fondoColor=document.getElementById('bgColor').value;
+    var fontSize=document.getElementById('fontSize').value;
+//aplicar cambios
+    document.body.style.backgroundColor = fondoColor;
+    document.body.style.fontSize = fontSize + 'px';
+//almacenar preferencias en el localStorage
 localStorage.setItem('bgColor',fondoColor);
-var fondo= localStorage.getItem('bgColor');
 localStorage.setItem('fontSize',fontSize);
-var tamaño= localStorage.getItem('fontSize');
-
-
-document.body.style.backgroundColor = fondo;
-document.body.style.fontSize=tamaño+"px";
-
 
 }
+
+ 
