@@ -1,3 +1,4 @@
+  import Disco from './clase.js';
   let discos = [];
   let mostrarMenu = true;
 

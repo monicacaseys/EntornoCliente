@@ -1,4 +1,4 @@
-class Disco {
+export default class Disco {
     constructor(nombre, cantante, año, tipo, localizacion, prestado) {
       this.nombre = nombre;
       this.cantante = cantante;
