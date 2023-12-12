@@ -1,7 +1,7 @@
 "use strict";
 var nombre = document.getElementById('nombre');
 var apellido1 = document.getElementsByName('apellido1') [0];
-var email = document.getElementById('correo');
+var email = document.querySelector('input[type="email"]');
 var contrasena = document.querySelector('.contrasena');
 var edad = document.getElementsByName('edad') [0];
 var pais = document.getElementById('pais');
@@ -17,6 +17,8 @@ document.addEventListener("DOMContentLoaded", function(event){
     }
     contrasena.addEventListener("blur", function(){validarContrasena(contrasena , "errorContrasena")});
     edad.addEventListener("input", function(){validarEdad(edad , "errorEdad")});
+    edad.addEventListener("blur", function(){comprobarEdad(edad , "errorEdad")});
+
     pais.addEventListener("blur", function(){validarPais(pais , "errorPais")});
     if (genero) { // Verificar si el campo de género existe
         genero.addEventListener("blur", function () { validarGenero(genero, "errorGenero") });
@@ -58,6 +60,7 @@ function validarContrasena (campo, errorId){
         error.style.fontWeight='bold';
         error.style.fontSize='20px';
         error.style.fontStyle='italic';
+        campo.focus();
     }else {
        error.innerHTML = "";
     }
@@ -77,6 +80,18 @@ function validarEdad (campo , errorId){
             error.innerHTML = "";
         }
     })
+}
+
+function comprobarEdad (campo, errorId){
+    let error = document.getElementById(errorId);
+    if (campo.value=== "" || campo.value<18){
+        error.innerHTML = "Edad vacia o menor de 18";
+        error.style.fontWeight='bold';
+        error.style.fontSize='20px';
+        error.style.fontStyle='italic';
+    }else{
+        error.innerHTML = "";
+    }
 }
 
 function validarPais(campo, errorId){
