@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario y Operaciones</title>
+</head>
+<body>
+
+  <h2>Formulario</h2>
+  <form id="miFormulario">
+    <label for="numero1">Número 1:</label>
+    <input type="number" id="numero1" required>
+
+    <label for="numero2">Número 2:</label>
+    <input type="number" id="numero2" required>
+
+    <button type="button" onclick="realizarOperaciones()">Realizar Operaciones</button>
+  </form>
+
+  <div id="resultados">
+    <!-- Aquí se mostrarán los resultados -->
+  </div>
+
+  <script>
+    // Función para crear la cookie
+    function crearCookie(nombre, valor, dias) {
+      const fechaExpiracion = new Date();
+      fechaExpiracion.setDate(fechaExpiracion.getDate() + dias);
+      const expires = `expires=${fechaExpiracion.toUTCString()}`;
+      document.cookie = `${nombre}=${valor}; ${expires}; path=/`;
+    }
+
+    // Función para obtener el valor de una cookie
+    function obtenerCookie(nombre) {
+      const name = `${nombre}=`;
+      const decodedCookie = decodeURIComponent(document.cookie);
+      const cookies = decodedCookie.split(';');
+      for (let i = 0; i < cookies.length; i++) {
+        let cookie = cookies[i].trim();
+        if (cookie.indexOf(name) === 0) {
+          return cookie.substring(name.length, cookie.length);
+        }
+      }
+      return '';
+    }
+
+    // Función para realizar operaciones con los datos del formulario
+    function realizarOperaciones() {
+      const numero1 = parseFloat(document.getElementById('numero1').value);
+      const numero2 = parseFloat(document.getElementById('numero2').value);
+
+      if (isNaN(numero1) || isNaN(numero2)) {
+        alert('Por favor, ingresa números válidos.');
+        return;
+      }
+
+      const suma = numero1 + numero2;
+      const resta = numero1 - numero2;
+      const multiplicacion = numero1 * numero2;
+      const division = numero1 / numero2;
+
+      // Crear cookie con document.cookie
+      crearCookie('resultadoOperaciones', `Suma: ${suma}, Resta: ${resta}, Multiplicación: ${multiplicacion}, División: ${division}`, 1);
+
+      // Mostrar resultados en el DOM
+      const resultadosDiv = document.getElementById('resultados');
+      resultadosDiv.innerHTML = `
+        <p>Suma: ${suma}</p>
+        <p>Resta: ${resta}</p>
+        <p>Multiplicación: ${multiplicacion}</p>
+        <p>División: ${division}</p>
+      `;
+
+      // Añadir elemento adicional en el DOM
+      const cookieInfo = document.createElement('p');
+      cookieInfo.textContent = 'Resultado de operaciones almacenado en cookie.';
+      resultadosDiv.appendChild(cookieInfo);
+    }
+  </script>
+
+</body>
+</html>
