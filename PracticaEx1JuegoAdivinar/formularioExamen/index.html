@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Formulario</h2>
+    <form id="miFormulario">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required>
+      <!-- No hay necesidad de añadir el div de error aquí en el HTML -->
+  
+      <label for="edad">Edad:</label>
+      <input type="number" class="edad" required>
+      <!-- No hay necesidad de añadir el div de error aquí en el HTML -->
+  
+      <label for="correo">Correo electrónico:</label>
+      <input type="email" id="correo" required>
+      <!-- No hay necesidad de añadir el div de error aquí en el HTML -->
+  
+      <label for="intereses">Intereses:</label>
+      <select name="intereses" multiple>
+        <option value="musica">Música</option>
+        <option value="deportes">Deportes</option>
+        <option value="viajes">Viajes</option>
+        <option value="tecnologia">Tecnología</option>
+      </select>
+      <!-- No hay necesidad de añadir el div de error aquí en el HTML -->
+  
+      <input type="button" class="btn btn-primary" id="registro" value="Registrarse">
+    </form>
+  
+    <div id="resultados">
+      <!-- Aquí se mostrarán los resultados -->
+    </div>
+    <script type="text/javascript" src="script.js"></script>
+</body>
+</html>

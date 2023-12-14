@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Registro de Superhéroes</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de Superhéroes</h1>
+        <form id="registroForm">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+            <div id="errorNombre" class="error"></div>
+
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad">
+            <div id="errorEdad" class="error"></div>
+
+            <label for="poder">Poder Principal:</label>
+            <input type="text" id="poder" name="poder">
+            <div id="errorPoder" class="error"></div>
+
+            <label for="habilidades">Habilidades Adicionales:</label>
+            <select id="habilidades" name="habilidades" multiple>
+                <option value="volar">Volar</option>
+                <option value="fuerza">Fuerza Sobrehumana</option>
+                <option value="invisibilidad">Invisibilidad</option>
+                <option value="telepatia">Telepatía</option>
+                <option value="superinteligencia">Superinteligencia</option>
+            </select>
+            <div id="errorHabilidades" class="error"></div>
+
+            <button type="button" id="registroBtn">Registrar</button>
+        </form>
+
+        <div id="mensajeRegistro" class="mensaje"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Registro de Superhéroes</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Registro de Superhéroes</h1>
+        <form id="registroForm">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+            <div id="errorNombre" class="error"></div>
+
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad">
+            <div id="errorEdad" class="error"></div>
+
+            <label for="poder">Poder Principal:</label>
+            <input type="text" id="poder" name="poder">
+            <div id="errorPoder" class="error"></div>
+
+            <label for="habilidades">Habilidades Adicionales:</label>
+            <select id="habilidades" name="habilidades" multiple>
+                <option value="volar">Volar</option>
+                <option value="fuerza">Fuerza Sobrehumana</option>
+                <option value="invisibilidad">Invisibilidad</option>
+                <option value="telepatia">Telepatía</option>
+                <option value="superinteligencia">Superinteligencia</option>
+            </select>
+            <div id="errorHabilidades" class="error"></div>
+
+            <button type="button" id="registroBtn">Registrar</button>
+        </form>
+
+        <div id="mensajeRegistro" class="mensaje"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
