@@ -64,7 +64,8 @@ document.addEventListener('DOMContentLoaded', function () {
           }, 500);
         } else {
           setTimeout(() => {
-            firstCard.setAttribute('class', firstCard.getAttribute('class').replace(' flipped', ''));
+            firstCard.removeAtribute("class");
+            firstCard.setAttribute('class','flipped');
             secondCard.setAttribute('class', secondCard.getAttribute('class').replace(' flipped', ''));
             isProcessing = false;
           }, 500);
