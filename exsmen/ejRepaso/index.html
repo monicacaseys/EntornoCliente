@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body class="d-flex align-items-center justify-content-center vh-100 bg-light">
+
+    <form id="miFormulario" class="col-md-6">
+        <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" class="form-control" id="exampleFormControlInput1">
+        </div>
+
+        <div class="form-group">
+            <label for="correo">Correo:</label>
+            <input type="email" id="correo" class="form-control email" id="exampleFormControlInput1">
+        </div>
+
+        <div class="form-group">
+            <label for="contrasena">Contraseña:</label>
+            <input type="password" id="contrasena" class="form-control" id="exampleFormControlInput1">
+        </div>
+
+        <div class="form-group">
+            <label for="telefono1">Teléfono 1:</label>
+            <input type="tel" id="telefono1" class="form-control" id="exampleFormControlInput1">
+        </div>
+
+        <div class="form-group">
+            <label for="telefono2">Teléfono 2:</label>
+            <input type="tel" id="telefono2" class="form-control" id="exampleFormControlInput1">
+        </div>
+
+        <div class="form-group">
+            <label for="edad">Edad:</label>
+            <input type="number" name="edad" class="form-control" id="exampleFormControlInput1">
+        </div>
+
+        <div class="form-group">
+            <label for="comunidadAutonoma">Comunidad Autónoma:</label>
+            <select id="comunidadAutonoma" class="form-control select" id="exampleFormControlSelect1">
+                <option value="madrid">Madrid</option>
+                <option value="barcelona">Barcelona</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="ciudades">Ciudades:</label>
+            <select id="ciudades" class="form-control select" id="exampleFormControlSelect1">
+                <option value="sevilla">Sevilla</option>
+                <option value="valencia">Valencia</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="sugerencia">Sugerencia o queja:</label>
+            <textarea id="sugerencia" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="colorFondo">Color de Fondo:</label>
+            <div>
+                <input type="radio" id="rojo" name="colorFondo" value="#ff0000">
+                <label for="rojo">Rojo</label>
+        
+                <input type="radio" id="azul" name="colorFondo" value="#0000ff">
+                <label for="azul">Azul</label>
+        
+                <input type="radio" id="verde" name="colorFondo" value="#00ff00">
+                <label for="verde">Verde</label>
+        
+                <input type="radio" id="amarillo" name="colorFondo" value="#ffff00">
+                <label for="amarillo">Amarillo</label>
+            </div>
+        </div>
+        
+        <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="privacidad">
+            <label class="form-check-label" for="privacidad">Acepto la privacidad</label>
+        </div>
+
+        <button type="button" class="btn btn-primary">Enviar</button>
+    </form>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+
+</html>
