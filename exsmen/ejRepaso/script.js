@@ -181,6 +181,12 @@ function validar() {
         // Guardar el color de fondo elegido
         localStorage.setItem('colorFondo', colorElegido);
     }
+    //se comprueba si queremos o no guardar las puntuaciones. 
+    if (privacidad.checked) {
+        privacidadCheck = true;
+    } else {
+        privacidadCheck = false;
+    }
 
     if (completo) {
         // Si está completo, enviar formulario
