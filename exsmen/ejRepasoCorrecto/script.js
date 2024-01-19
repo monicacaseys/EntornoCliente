@@ -7,7 +7,7 @@ var telf1 = document.getElementsByName("telefono")[0];
 var telf2 = document.getElementsByName("telefono")[1];
 var comunidad = document.getElementById("selectCA")
 var ciudad = document.getElementById("selectCity"); //ClassName que me devuelve en este caso el segundo elemento
-var edad = document.getElementsByName('edad'); //En este caso me interesa que me devuelva la lista con todos los elementos de este nombre
+var edad = document.getElementsByName('edad') [0]; //En este caso me interesa que me devuelva la lista con todos los elementos de este nombre
 var privacidad = document.getElementById("checkbox");//como es id es Ãºnico
 var textarea = document.getElementById("textarea");
 var error = document.createElement("span"); //creo mi elemento span que me servirÃ¡ para informar de errore
@@ -84,8 +84,11 @@ debe aparecer la contraseña que existía antes de perder el foco. */
             let asteriscos = "*".repeat(contrasenaOriginal.length);
             contraseña.value = asteriscos;
         }
+        //faltacomprovar que al quitar el foco se compruebe la condicion de la contraseña
     });
-
+    telf1.addEventListener('keydown', noLetras);
+    telf2.addEventListener('keydown', noLetras);
+    edad.addEventListener('keydown', noLetras);
     //validar fijo 
     telf1.addEventListener('blur', function () {
         valorTelf1 = validarFijo(telf1);
@@ -96,6 +99,18 @@ debe aparecer la contraseña que existía antes de perder el foco. */
         valorTelf2 = validarMovil(telf2);
        
     });
+    //validar edad
+    edad.addEventListener('blur', function(){
+        edadUsu = validarEdad(edad);
+    })
+
+    //validar Comunidad
+    comunidad.addEventListener('change', function(){
+        comunidadValor = validarComunidades(comunidad);
+    })
+    ciudad.addEventListener('change', function(){
+        ciudadValor = validarCiudades(ciudad);
+    })
     // Validar formulario
     // boton.addEventListener('click', validar);
 });
@@ -157,7 +172,7 @@ function validarApellido(campo) {
     if (!regex.test(apellidoValor)) {
         error.style.fontSize = "10px";
         error.style.color = "red";
-        campo.style.borderColor = "red"; // Cambiar de nombre a campo
+        campo.style.background = "red"; // Cambiar de nombre a campo
         error.style.fontWeight = "bold";
         error.innerHTML = 'El apellido debe tener la primera letra en mayúscula y el resto en minúsculas.';
         contenedor.parentNode.insertBefore(error, contenedor); // Aquí lo inserto antes del elemento identificado
@@ -165,7 +180,7 @@ function validarApellido(campo) {
         return null;
     } else {
         error.textContent = '';
-        campo.style.borderColor = ""; // Cambiar de nombre a campo
+        campo.style.background = ""; // Cambiar de nombre a campo
         return apellidoValor;
     }
 }
@@ -249,19 +264,7 @@ function validarFijo(campo){
 function validarMovil(campo){
     let movilValor = campo.value;
     let regex = /^[67]\d{8}$/;
-
     let contenedor = campo.nextSibling; // Devuelve el siguiente nodo con respecto al indicado en la lista de nodos 
-
-   
-    campo.addEventListener('keypress', function (event) {
-        // Obtener el código ASCII de la tecla presionada
-        let charCode = event.which || event.keyCode;
-
-        // Permitir solo dígitos numéricos
-        if (charCode < 48 || charCode > 57) {
-            event.preventDefault();
-        }
-    });
 
     campo.addEventListener('blur', function () {
         // Limpiar el valor de cualquier caracter no numérico
@@ -285,9 +288,35 @@ function validarMovil(campo){
 });
 }
 
-function validarEdad(){
-
+function validarEdad(campo){
+    let edadValor = campo.value;
+    let contenedor = campo.nextSibling; 
+    if(edadValor < 18 || edadValor >100 ){
+        error.style.fontSize = "10px";
+        error.style.color = "red";
+        campo.style.borderColor = "red"; // Cambiar de nombre a campo
+        error.style.fontWeight = "bold";
+        error.innerHTML = 'Tiene que ser mayor de edad';
+        contenedor.parentNode.insertBefore(error, contenedor); // Aquí lo inserto antes del elemento identificado
+        campo.focus();
+        return null;
+    } else {
+        error.textContent = '';
+        campo.style.borderColor = ""; // Cambiar de nombre a campo
+        return edadValor;
+    }
 }
+function noLetras(){
+   
+        let charCode = event.which || event.keyCode;
+    
+        // Permitir solo dígitos numéricos
+        if (charCode > 57) {
+            event.preventDefault();
+        }
+    };
+
+ 
 /* Cuando el select de las comunidades autónomas pierda el foco debemos de activar y
 rellenar el select de las ciudades. Crearemos un array dentro de nuestro script con las
 ciudades de cada comunidad autónoma y cuando la comunidad pierda el foco
@@ -296,6 +325,94 @@ abandonamos el select de comunidades sin seleccionar ninguna nos avisará como u
 error. Si al perder el foco se ha seleccionado alguna se habilita las ciudades, se cargan
 los select correspondientes y se le pasa el foco. Al perder el foco el select de ciudades
 debe tener una ciudad seleccionada, sino nos avisaría mediante error. */
+// Definir las variables globales
+
+function validarComunidades(comunidad) {
+  
+let valorComunidad = comunidad.value;
+console.log(valorComunidad)
+    let contenedor = comunidad.nextSibling;
+
+    if (valorComunidad.trim() === "") {
+        error.style.fontSize = "10px";
+        error.style.color = "red";
+        comunidad.style.borderColor = "red"; // Cambiar de nombre a campo
+        error.style.fontWeight = "bold";
+        error.innerHTML = 'Tienes que seleccionar una comunidad';
+        contenedor.parentNode.insertBefore(error, contenedor); // Aquí lo inserto antes del elemento identificado
+        ciudad.disabled = true;
+        comunidad.focus();
+        return null;
+    } else {
+        error.textContent = '';
+        comunidad.style.borderColor = "";
+        pintarCiudades(ciudad);
+        return valorComunidad;
+    }
+}
+
+function validarCiudades(campo) {
+    let ciudadSeleccionada = campo.value;
+
+    if (ciudadSeleccionada.trim() === "") {
+        error.style.fontSize = "10px";
+        error.style.color = "red";
+        campo.style.borderColor = "red"; // Cambiar de nombre a campo
+        error.style.fontWeight = "bold";
+        error.innerHTML = 'Tienes que seleccionar una ciudad';
+        contenedor.parentNode.insertBefore(error, contenedor); // Aquí lo inserto antes del elemento identificado
+        campo.focus();
+        return null;
+    } else {
+        error.textContent = '';
+        campo.style.borderColor = "";
+        return ciudadSeleccionada;
+    }
+}
+
+function pintarCiudades(campo) {
+    campo.focus();
+    const ciudadesPorComunidad = {
+        "Andalucía": ["Sevilla", "Málaga", "Córdoba"],
+        "Extremadura": ["Caceres", "Badajoz"],
+        "Galicia": ["A Coruña", "Lugo", "Ourense", "Pontevedra"],
+        "Valencia": ["Alicante", "Castellón", "Valencia"]
+    };
+
+
+    campo.disabled = false;
+
+    // Obtener las ciudades correspondientes a la comunidad seleccionada
+    let ciudades = ciudadesPorComunidad[valorComunidad];
+
+    // Limpiar opciones anteriores del select de ciudades
+    campo.innerHTML = "";
+
+    // Agregar las nuevas opciones al select de ciudades
+    ciudades.forEach(function (ciudadNombre) {
+        let option = document.createElement("option");
+        option.value = ciudadNombre;
+        option.text = ciudadNombre;
+        campo.appendChild(option);
+    });
+
+    // Asegurarse de que haya al menos una ciudad seleccionada
+    if (campo.selectedIndex === -1) {
+        error.style.fontSize = "10px";
+        error.style.color = "red";
+        campo.style.borderColor = "red"; // Cambiar de nombre a campo
+        error.style.fontWeight = "bold";
+        error.innerHTML = 'Tienes que seleccionar una ciudad';
+        contenedor.parentNode.insertBefore(error, contenedor); // Aquí lo inserto antes del elemento identificado
+        campo.focus();
+        return null;
+    } else {
+        error.textContent = '';
+        campo.style.borderColor = "";
+        return campo.value;
+    }
+}
+
 
 /* Cuando pulse el botón enviar se debe validar en primer lugar que se han aceptado las
 condiciones, sino es el caso se avisará de que el formulario solo se enviará en el caso de
