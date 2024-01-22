@@ -7,7 +7,7 @@ var telf1 = document.getElementsByName("telefono")[0];
 var telf2 = document.getElementsByName("telefono")[1];
 var comunidad = document.getElementById("selectCA")
 var ciudad = document.getElementById("selectCity"); //ClassName que me devuelve en este caso el segundo elemento
-var edad = document.getElementsByName('edad') [0]; //En este caso me interesa que me devuelva la lista con todos los elementos de este nombre
+var edad = document.getElementsByName('edad')[0]; //En este caso me interesa que me devuelva la lista con todos los elementos de este nombre
 var privacidad = document.getElementById("checkbox");//como es id es Ãºnico
 var textarea = document.getElementById("textarea");
 var error = document.createElement("span"); //creo mi elemento span que me servirÃ¡ para informar de errore
@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
         nombreUsu = validarNombre(nombre);
     });
 
-      // Validar segundo apellido y realizar comprobaciones adicionales
-      valor2.addEventListener('blur', function () {
+    // Validar segundo apellido y realizar comprobaciones adicionales
+    valor2.addEventListener('blur', function () {
         apellidoUsu2 = validarApellido(valor2);
         apellidoUsu1 = validarApellido(valor1);
 
@@ -55,12 +55,12 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         }
     });
-/* El campo contraseña puede aceptar la contraseña generada o permitir una que cumpla
-con el mismo patrón. Cuando pierda el foco deberá cambiar el valor por una fila de
-asteriscos de igual longitud, pero si volvemos a tener el foco en el campo contraseña
-debe aparecer la contraseña que existía antes de perder el foco. */
+    /* El campo contraseña puede aceptar la contraseña generada o permitir una que cumpla
+    con el mismo patrón. Cuando pierda el foco deberá cambiar el valor por una fila de
+    asteriscos de igual longitud, pero si volvemos a tener el foco en el campo contraseña
+    debe aparecer la contraseña que existía antes de perder el foco. */
     //validar email y sacar contraseña
-    correo.addEventListener('blur', function(){
+    correo.addEventListener('blur', function () {
         email = validarEmail(correo);
         if (email !== null) {
             // El correo es válido, generar y mostrar la contraseña
@@ -70,8 +70,8 @@ debe aparecer la contraseña que existía antes de perder el foco. */
             correo.focus();
         }
     })
-     // Manejar el evento focus y blur del campo contraseña
-     contraseña.addEventListener('focus', function () {
+    // Manejar el evento focus y blur del campo contraseña
+    contraseña.addEventListener('focus', function () {
         // Cuando se tiene el foco, mostrar la contraseña original si existe
         if (contrasenaOriginal !== undefined) {
             contraseña.value = contrasenaOriginal;
@@ -79,6 +79,7 @@ debe aparecer la contraseña que existía antes de perder el foco. */
     });
 
     contraseña.addEventListener('blur', function () {
+        contrasenaOriginal = validarContraseña(contraseña);
         // Cuando se pierde el foco, cambiar el valor por una fila de asteriscos si la contraseña existe
         if (contrasenaOriginal !== undefined) {
             let asteriscos = "*".repeat(contrasenaOriginal.length);
@@ -92,23 +93,23 @@ debe aparecer la contraseña que existía antes de perder el foco. */
     //validar fijo 
     telf1.addEventListener('blur', function () {
         valorTelf1 = validarFijo(telf1);
-       
+
     });
     //validar movil 
     telf2.addEventListener('blur', function () {
         valorTelf2 = validarMovil(telf2);
-       
+
     });
     //validar edad
-    edad.addEventListener('blur', function(){
+    edad.addEventListener('blur', function () {
         edadUsu = validarEdad(edad);
     })
 
     //validar Comunidad
-    comunidad.addEventListener('change', function(){
+    comunidad.addEventListener('change', function () {
         comunidadValor = validarComunidades(comunidad);
     })
-    ciudad.addEventListener('change', function(){
+    ciudad.addEventListener('change', function () {
         ciudadValor = validarCiudades(ciudad);
     })
     // Validar formulario
@@ -127,7 +128,7 @@ function validarNombre(campo) {
     let regex = /^[A-Z][a-z]*(\s[A-Z][a-z]*)*$/;
 
     let contenedor = campo.nextSibling; //devuelve el siguiente nodo con respecto al indicado en la lista de nodos 
-   
+
     if (!regex.test(nombreValor)) {
         error.style.fontSize = "10px";
         error.style.color = "red";
@@ -140,7 +141,7 @@ function validarNombre(campo) {
     } else {
         error.textContent = '';
         campo.style.borderColor = ""; // Cambiar de nombre a campo
-       
+
         if (!apellidosCreados) {
             apellido1.textContent = "Apellido 1";
             contenedor.parentNode.insertBefore(apellido1, contenedor);
@@ -168,7 +169,7 @@ function validarApellido(campo) {
     let regex = /^[A-Z][a-z]*(-[A-Z][a-z]*)*$/;
 
     let contenedor = campo.nextSibling; //devuelve el siguiente nodo con respecto al indicado en la lista de nodos 
-   
+
     if (!regex.test(apellidoValor)) {
         error.style.fontSize = "10px";
         error.style.color = "red";
@@ -203,7 +204,7 @@ function validarEmail(campo) {
     let regex = /^[a-zA-Z0-9._-]+@cenec\.es$/;
 
     let contenedor = campo.nextSibling; //devuelve el siguiente nodo con respecto al indicado en la lista de nodos 
-   
+
     if (!regex.test(emailValor)) {
         error.style.fontSize = "10px";
         error.style.color = "red";
@@ -228,9 +229,36 @@ function generarContraseña() {
         let numerosAleatorios = Math.floor(Math.random() * 9000) + 1000;
 
         return primeraLetraNombre + tresPrimerasLetrasApellido1 + primeraLetraApellido2 + numerosAleatorios;
-    } 
+    }
 }
 
+function validarContraseña(campo) {
+    let contraseñaValor = campo.value;
+
+    let primeraLetraNombre = nombreUsu.charAt(0).toUpperCase();
+    let tresPrimerasLetrasApellido1 = apellidoUsu1.substring(0, 3).toLowerCase();
+    let primeraLetraApellido2 = apellidoUsu2.charAt(0).toUpperCase();
+    let numerosAleatorios = Math.floor(Math.random() * 9000) + 1000;
+
+    let patron = primeraLetraNombre + tresPrimerasLetrasApellido1 + primeraLetraApellido2 + numerosAleatorios;
+
+    let contenedor = campo.nextSibling; //devuelve el siguiente nodo con respecto al indicado en la lista de nodos 
+
+    if (contraseñaValor !== patron) {
+        error.style.fontSize = "10px";
+        error.style.color = "red";
+        campo.style.borderColor = "red"; // Cambiar de nombre a campo
+        error.style.fontWeight = "bold";
+        error.innerHTML = 'La contraseña sigue un patron. primera letra del nombre en mayúscula, seguido de las primeras tres letras de su primer apellido y de la primera letra en mayúscula de su segundo apellido';
+        contenedor.parentNode.insertBefore(error, contenedor); // Aquí lo inserto antes del elemento identificado
+        campo.focus();
+        return null;
+    } else {
+        error.textContent = '';
+        campo.style.borderColor = ""; // Cambiar de nombre a campo
+        return contraseñaValor;
+    }
+}
 
 /* Para los teléfonos necesito que el primer campo sea un fijo de Málaga, con prefijo 952
 y para el segundo campo que sea un móvil y por tanto debe comenzar por 6 o por 7. La
@@ -239,12 +267,12 @@ siempre que se cumplan las condiciones mencionadas y si no es así se avisará c
 correspondientes errores. Es importante que no se permita escribir letras en ninguno de
 los campos. */
 
-function validarFijo(campo){
+function validarFijo(campo) {
     let fijoValor = campo.value;
     let regex = /^952\d{6}$/;
 
     let contenedor = campo.nextSibling; //devuelve el siguiente nodo con respecto al indicado en la lista de nodos 
-   
+
     if (!regex.test(fijoValor)) {
         error.style.fontSize = "10px";
         error.style.color = "red";
@@ -261,7 +289,7 @@ function validarFijo(campo){
     }
 }
 
-function validarMovil(campo){
+function validarMovil(campo) {
     let movilValor = campo.value;
     let regex = /^[67]\d{8}$/;
     let contenedor = campo.nextSibling; // Devuelve el siguiente nodo con respecto al indicado en la lista de nodos 
@@ -271,27 +299,27 @@ function validarMovil(campo){
         let numericValue = campo.value.replace(/\D/g, "");
 
 
-    if (!regex.test(movilValor)) {
-        error.style.fontSize = "10px";
-        error.style.color = "red";
-        campo.style.borderColor = "red"; // Cambiar de nombre a campo
-        error.style.fontWeight = "bold";
-        error.innerHTML = 'Tiene que ser un numero movil.';
-        contenedor.parentNode.insertBefore(error, contenedor); // Aquí lo inserto antes del elemento identificado
-        campo.focus();
-        return null;
-    } else {
-        error.textContent = '';
-        campo.style.borderColor = ""; // Cambiar de nombre a campo
-        return movilValor;
-    }
-});
+        if (!regex.test(numericValue)) {
+            error.style.fontSize = "10px";
+            error.style.color = "red";
+            campo.style.borderColor = "red"; // Cambiar de nombre a campo
+            error.style.fontWeight = "bold";
+            error.innerHTML = 'Tiene que ser un numero movil.';
+            contenedor.parentNode.insertBefore(error, contenedor); // Aquí lo inserto antes del elemento identificado
+            campo.focus();
+            return null;
+        } else {
+            error.textContent = '';
+            campo.style.borderColor = ""; // Cambiar de nombre a campo
+            return movilValor;
+        }
+    });
 }
 
-function validarEdad(campo){
+function validarEdad(campo) {
     let edadValor = campo.value;
-    let contenedor = campo.nextSibling; 
-    if(edadValor < 18 || edadValor >100 ){
+    let contenedor = campo.nextSibling;
+    if (edadValor < 18 || edadValor > 100) {
         error.style.fontSize = "10px";
         error.style.color = "red";
         campo.style.borderColor = "red"; // Cambiar de nombre a campo
@@ -306,17 +334,17 @@ function validarEdad(campo){
         return edadValor;
     }
 }
-function noLetras(){
-   
-        let charCode = event.which || event.keyCode;
-    
-        // Permitir solo dígitos numéricos
-        if (charCode > 57) {
-            event.preventDefault();
-        }
-    };
+function noLetras() {
 
- 
+    let charCode = event.which || event.keyCode;
+
+    // Permitir solo dígitos numéricos
+    if (charCode > 57) {
+        event.preventDefault();
+    }
+};
+
+
 /* Cuando el select de las comunidades autónomas pierda el foco debemos de activar y
 rellenar el select de las ciudades. Crearemos un array dentro de nuestro script con las
 ciudades de cada comunidad autónoma y cuando la comunidad pierda el foco
@@ -328,9 +356,9 @@ debe tener una ciudad seleccionada, sino nos avisaría mediante error. */
 // Definir las variables globales
 
 function validarComunidades(comunidad) {
-  
-let valorComunidad = comunidad.value;
-console.log(valorComunidad)
+
+    let valorComunidad = comunidad.value;
+    console.log(valorComunidad)
     let contenedor = comunidad.nextSibling;
 
     if (valorComunidad.trim() === "") {
