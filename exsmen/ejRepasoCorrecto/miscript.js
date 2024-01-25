@@ -23,13 +23,20 @@ var condiciones = document.getElementById('checkbox');
 
 var colorSelect = document.getElementsByName ('selectedColor'); 
 
+var textArea= document.getElementById('textarea');
+
+var form = document.getElementById('myForm');
+
+
 var boton = document.querySelector("button[type=button]");
 
 var errorElement = document.createElement('span');
 errorElement.className = "error-message";
+
 let asteriscos="";
 var selectCA=document.getElementById("selectCA");
 var selectCiudad=document.getElementById("selectCity");
+
 document.addEventListener('DOMContentLoaded', function () {
     /*
     EJERCICIO 1:   
@@ -176,17 +183,6 @@ function validarContraseña(){
        final=contrasenaValue;
     }
 }
-
-/*
-Cuando el select de las comunidades autónomas pierda el foco debemos de activar y
-rellenar el select de las ciudades. Crearemos un array dentro de nuestro script con las
-ciudades de cada comunidad autónoma y cuando la comunidad pierda el foco
-cargaremos en el select de ciudades las pertenecientes a dicha comunidad. Si
-abandonamos el select de comunidades sin seleccionar ninguna nos avisará como un
-error. Si al perder el foco se ha seleccionado alguna se habilita las ciudades, se cargan
-los select correspondientes y se le pasa el foco. Al perder el foco el select de ciudades
-debe tener una ciudad seleccionada, sino nos avisaría mediante error.
-*/
 var array=undefined;
 
 function validarSelectCA(valor){
@@ -279,18 +275,6 @@ function noLetras(){
         event.preventDefault();
     }
 }
-/* Cuando pulse el botón enviar se debe validar en primer lugar que se han aceptado las
-condiciones, sino es el caso se avisará de que el formulario solo se enviará en el caso de
-aceptar las condiciones de uso. Si las condiciones están aceptadas se validarán que los
-campos nombre, apellido1, apellido2, correo, contraseña y teléfonos están completos.
-Además se recogerá en el caso de que se haya seleccionado algún color. Se comprobará
-que además el campo comentario esté relleno y se analizará el contenido del text area.
-En el text area comprobaremos si aparece la palabra reclamación o sugerencia. Una vez
-comprobados todos los campos, si las verificaciones son correctas se deberá de añadir
-un div con el fondo del color seleccionado, si no se seleccionó ninguno el fondo será rosa.
-En el div aparecerá toda la información recogida en el formulario y en el comentario se
-indicará si es una reclamación un comentario o una sugerencia. */
-
 
 function validar(){
 
@@ -298,15 +282,54 @@ function validar(){
 
         if (nombre.value != "" || apellido1Input.value != "" || apellido2Input.value != "" 
         || email.value != "" || telefonoFijo.value != "" || telefonoMovil.value != ""){
-            
+ //color fondo           
+var colorFondo = "pink"; // Valor por defecto
+
+for (let i = 0; i < colorSelect.length; i++) {
+    if (colorSelect[i].checked) {
+        colorFondo = colorSelect[i].value;
+        break;
+    }
+}
+
+// Verificar si se seleccionó un color diferente de "pink"
+if (colorFondo === "pink") {
+    mostrarError(boton, "Debes seleccionar un color");
+}
+
+console.log('Color final:', colorFondo);
+
+//capturar texarea
+var textAreaValue = textArea.value.toLowerCase().trim();
+var queEs;
+if (textAreaValue === 'recomendacion'){
+ queEs = "Recomendacion";
+} else {
+    queEs = "Sugerencia";
+}
+
+// Crear div con la información
+var divInformacion = document.createElement('div');
+ // Contenido del div con saltos de línea
+ divInformacion.innerHTML = `Nombre: ${nombre.value}<br>
+ Apellido1: ${apellido1Input.value}<br>
+ Apellido2: ${apellido2Input.value}<br>
+ Email: ${email.value}<br>
+ Telefono Fijo: ${telefonoFijo.value}<br>
+ Telefono Móvil: ${telefonoMovil.value}<br>
+ Color: ${colorFondo}<br>
+ Tipo: ${queEs}`;
+// Pintar div
+divInformacion.style.padding = "10px"; // Añadir espacio alrededor del contenido
+divInformacion.style.marginBottom = "10px"; 
+divInformacion.style.background = colorFondo;
+form.parentNode.insertBefore(divInformacion, form.nextSibling);
 
         } else {
             mostrarError(boton, "Debes rellenar todos los campos");
         }
-      
+ 
     } else {
         mostrarError(boton, "Condiciones aceptadas");
     }
-
-
 }
