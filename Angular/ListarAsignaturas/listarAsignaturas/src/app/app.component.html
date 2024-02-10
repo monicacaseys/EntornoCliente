@@ -1,0 +1,55 @@
+<h1>{{title}}</h1>
+
+<div class="container">
+  <h1>Añade un profesor</h1>
+  <div class="col">
+   <form class="form-gorup row">
+    <div class="form-gorup col-md-3">
+      <label for="nombre"> Nombre: </label>
+      <input type="text" name="nombre" id="nombre" placeholder="nombre" class="form-control" [(ngModel)]="datoNombre">
+    </div>
+   </form>
+
+   <form class="form-gorup row">
+    <div class="form-gorup col-md-3">
+      <label for="apellido"> Apellido: </label>
+      <input type="text" name="apellido" id="apellido" placeholder="apellido" class="form-control" [(ngModel)]="datoApellido">
+    </div>
+   </form>
+
+   <button type="submit" class="btn btn-primary" (click)="anadirProfesor()" style="margin: 25px;">Añadir</button>
+  </div>
+</div>
+
+<div class="container">
+  <h1>Añade una asignatura</h1>
+  <div class="col">
+
+   <form class="form-gorup row">
+    <div class="form-gorup col-md-3">
+      <label for="tematica"> Temática: </label>
+      <input type="text" name="tematica" id="tematica" placeholder="tematica" class="form-control" [(ngModel)]="datoTematica">
+    </div>
+   </form>
+
+   <form class="form-gorup row">
+    <div class="form-gorup col-md-3">
+      <label for="horas"> Nº horas: </label>
+      <input type="text" name="horas" id="horas" placeholder="horas" class="form-control" [(ngModel)]="datoHoras">
+    </div>
+   </form>
+   
+
+   <button type="submit" class="btn btn-primary" (click)="anadirProfesor()" style="margin: 25px;">Añadir</button>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div *ngFor="let asignatura of asignaturas; let i=index">
+       {{i+1}} {{asignatura.tematica}} {{asignatura.horas}} {{asignatura.profesor.imprimir()}}
+      </div>
+    </div>
+  </div>
+</div>
