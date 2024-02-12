@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="ui/jquery-ui.css">
+    <link rel="stylesheet" href="ui/jquery-ui.theme.min.css">
+    <style>
+        #draggable {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(10, 82, 28);
+            display: flex;
+            align-items: center;
+            /* Alineación vertical */
+            justify-content: center;
+            /* Alineación horizontal */
+        }
+
+        #droppable {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(119, 12, 57);
+            margin-left: 50px;
+        }
+
+        #resizable {
+            width: 200px;
+            height: 200px;
+            background-color: rgb(115, 28, 173);
+            margin-left: 50px;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <!--Div para draggable y droppable-->
+
+    <div style="display: flex;">
+        <div id="draggable">
+            <p id="parrafo">Mueveme</p>
+        </div>
+        <div id="droppable">
+        </div>
+    </div>
+    <hr />
+
+<!--Para ordenar una lista-->
+    <ul id="sortable">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+    </ul>
+
+<!--Acordeón para los menus-->
+    <div id="accordion">
+        <h3 style="background-color: gray;">Noticia1 </h3>
+        <div>
+            <p>
+                Este parrafo se ve al cargar
+            </p>
+        </div>
+        <h3 style="background-color: gray;">Noticia2</h3>
+        <div>
+            <p>
+                Este parrafo estaría oculto
+            </p>
+        </div>
+    </div>
+    <hr />
+
+
+    <!--Para autocompletar-->
+    <label for="alimentos">Autocompleta en base a una lista previamente creada en el script: </label>
+    <input id="alimentos">
+    <hr />
+
+    <!--Para mostrar calendario-->
+    <label for="fecha">Selecciona una fecha:</label>
+    <input type="text" id="fecha">
+
+<hr/>
+<!--Contruir un modal-->
+<button id="abrirModal">Abrir Modal</button>
+
+
+<!--Como se abre un modal-->
+<div id="modal" title="Ventana Modal">
+    <p>Contenido del modal...</p>
+</div>
+
+
+<hr/>
+<!-- Formulario de ejemplo para incorporar datos en un modal-->
+
+<label for="nombre">Nombre:</label>
+<input type="text" id="nombre">
+<label for="apellido">Apellido:</label>
+<input type="text" id="apellido">
+<button id="mostrarModalBtn">Mostrar Modal</button>
+
+
+<div id="modal1" title="Datos del Formulario">
+    <p id="nombreModal"></p>
+    <p id="apellidoModal"></p>
+</div>
+
+
+<hr/>
+
+<!--Formulario dentro de un modal-->
+
+<button id="abrirModalBtn">Abrir Modal con Formulario</button>
+
+<div id="modalFormulario" title="Formulario dentro de un Modal">
+    <form id="miFormulario">
+        <label for="nombref">Nombre:</label>
+        <input type="text" id="nombref" name="nombre">
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellidof" name="apellido">
+
+        <button type="submit">Guardar y Cerrar</button>
+    </form>
+</div>
+
+
+
+
+    <script src="formulario.js"></script>
+    <script src="ui/jquery-ui.js"></script>
+    <script src="script.js"></script>
+
+</body>
+
+</html>
