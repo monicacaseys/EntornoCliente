@@ -7,7 +7,7 @@
     border: solid 4px green;
 }
  body{
-    background-color: #334455e2;
+    background-color: #c5c7c9ac;
 } 
 dialog::backdrop{
     background-color: rgba(250, 235, 215, 0.681);
@@ -39,18 +39,21 @@ button:hover {
     top: 10px; /* Separación desde la parte superior */
     left: 10px; /* Separación desde el borde izquierdo */
     width: 200px;
-    background-color: #011b06de; /* Cambiar a tu color deseado */
-    color: white;
+    background-color: #f8ff2799; /* Cambiar a tu color deseado */
+    color: rgb(0, 0, 0);
     padding: 10px;
     text-align: center;
     overflow-y: auto;
    /* height: calc(100% - 10px); /* Resta 20px para separación desde la parte inferior */
     border-radius: 15px; /* Bordes redondeados en todas las esquinas */
-    border: 2px solid #18d638; 
+    box-shadow: 2px 3px #08385b; 
+    border: 1px solid #08385b;
 }
-
+#menu h2{
+    font-family: 'MuseoModerno', sans-serif;
+}
 #menu a {
-    color: #ccc; /* Color de texto gris claro */
+    color: #000000; /* Color de texto gris claro */
     text-decoration: none;
     display: block;
     margin-bottom: 10px;
@@ -63,14 +66,15 @@ button:hover {
 
 #menu a:hover {
     color: white; /* Color de texto blanco al pasar el ratón por encima */
-    background-color: rgb(52, 131, 71); /* Cambio de color de fondo al pasar el ratón */
+    background-color: #08385b; /* Cambio de color de fondo al pasar el ratón */
 }
 /* Estilos para el enlace activo */
 #menu a.active {
-    background-color: rgb(34, 139, 60); /* Color de fondo azul */
+    background-color: #2e9eefef; /* Color de fondo azul */
     color: white; /* Color de texto blanco para el enlace activo */
     border-radius: 15px; /* Bordes redondeados en todas las esquinas */
 }
+
 
 @media only screen and (max-width: 767px) {
     #menu a {
@@ -94,7 +98,8 @@ button:hover {
 /* Estilos para las secciones */
 .section {
     margin-bottom: 30px;
-    border: 2px solid #0077B5; /* Borde azul */
+    box-shadow: 2px 3px #08385b; 
+    border: 1px solid #08385b;
     border-radius: 15px; /* Bordes redondeados en todas las esquinas */
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.557);
@@ -107,10 +112,14 @@ button:hover {
     top: -20px; /* Ajusta la distancia desde la parte superior */
     left: 20px; /* Ajusta la distancia desde la izquierda */
     background-color: white; /* Establece el fondo del título al color de fondo de la sección */
-    padding: 0 10px; /* Añade relleno para separar el título del borde superior */
+    padding: 0 15px; /* Añade relleno para separar el título del borde superior */
     border-top-left-radius: 15px; /* Borde superior izquierdo redondeado */
     border-top-right-radius: 15px; /* Borde superior derecho redondeado */
-    border: 2px solid #0077B5; /* Borde superior azul */
+    border-bottom-left-radius: 15px; /* Borde superior izquierdo redondeado */
+    border-bottom-right-radius: 15px; /* Borde superior derecho redondeado */
+    box-shadow: 2px 3px #08385b; 
+    border: 1px solid #08385b;
+    font-family: 'MuseoModerno', sans-serif;
 }
 
 /* Estilos para la sección "Home" */
