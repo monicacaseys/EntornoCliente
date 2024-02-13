@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { Uusario } from './usuario.model';
 
 @Component({
@@ -6,6 +6,7 @@ import { Uusario } from './usuario.model';
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent {
   title = 'listarUsuario';
  

@@ -27,12 +27,6 @@
     </div>
   </div>
 
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <div *ngFor="let usuario of usuarios; let i=index">
-       {{i+1}} {{usuario.nombre}} {{usuario.apellido}} {{usuario.edad}}
-      </div>
-    </div>
-  </div>
-</div>
+<app-listado *ngFor="let usuario of usuarios; let i=index" [usuarioFor]=usuario [indice]="i" ></app-listado>
+
+

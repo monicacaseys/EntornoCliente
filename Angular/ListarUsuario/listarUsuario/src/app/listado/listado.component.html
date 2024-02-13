@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="row">
+      <div class="col">
+        
+         {{indice+1}} {{usuarioFor.nombre}} {{usuarioFor.apellido}}
+         <span [ngClass]="{mayor: usuarioFor.edad>=18?'red':'blue'}"> {{usuarioFor.edad}}</span>
+        
+      </div>
+    </div>
+</div>
