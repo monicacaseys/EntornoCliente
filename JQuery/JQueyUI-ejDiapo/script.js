@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     //----Formulario index----
     $(function () {
-        $(document).tooltip();
+        $(document).tooltip(); //al pasar el raton se muestra una informacion
     });
 
     $("#miFormulario").on("submit", function (event) {

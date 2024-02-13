@@ -57,11 +57,11 @@ $(document).ready(function(){
           $(this).append('<span style="color:red;"> - ' + horas + ' horas semanales</span>');
         }
       }); */
-    
+      var modalidad = "presencial"; 
     // 9. Modifica el ejercicio 8 para que al hacer click sobre el nombre aparezca el tipo de modalidad (presencial). Esta información será pasada a la función que trata el evento a través del método on.
-    $('ul > li').on('click', function() {//LA PRIMERA ME LO IMPRIME BIEN Y EL RESTO ME LO IMPRIME VARIAS VECES
-        var modalidad = 'presencial'; 
+    $('li').on('click', mod );//LA PRIMERA ME LO IMPRIME BIEN Y EL RESTO ME LO IMPRIME VARIAS VECES, era porque tenia ul>li, pero son solo li va bien
+      function mod(){
         $(this).append('<span style="color:blue;"> - ' + modalidad + '</span>');
-      });
+       }
     
 })
