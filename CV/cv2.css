@@ -8,6 +8,7 @@
 }
  body{
     background-color: #c5c7c9ac;
+    
 } 
 dialog::backdrop{
     background-color: rgba(250, 235, 215, 0.681);
@@ -104,6 +105,9 @@ button:hover {
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.557);
     position: relative; /* Añade posición relativa */
+    display: flex; /* Utiliza flexbox */
+    flex-direction: column; /* Establece la dirección de los elementos en columna */
+    align-items: center;
 }
 
 .section h2 {
@@ -129,7 +133,7 @@ button:hover {
 
 #home img {
     max-width: 100%;
-    border-radius: 50%;
+    
 }
 
 #home h1 {
@@ -140,6 +144,7 @@ button:hover {
 #home p {
     font-size: 18px;
     margin: 10px 0;
+    
 }
 
 /* Estilos para el botón "Más información" */
@@ -147,17 +152,33 @@ button:hover {
     display: inline-block;
     background-color: #0077B5;
     color: white;
-    padding: 10px 20px;
+    padding: 5px 10px;
     text-decoration: none;
     border-radius: 5px;
-    font-weight: bold;
-    margin-top: 20px;
-    transition: background-color 0.3s ease; /* Transición suave del color de fondo */
+    font-weight: bold;  
+   /* transition: background-color 0.3s ease;  Transición suave del color de fondo */
 }
 
 #linkedin-button:hover {
     background-color: #005580; /* Cambio de color de fondo al pasar el ratón */
 }
+
+.linea {
+    width: 2px; /* grosor de la línea */
+    height: 0;
+    background-color: #0077B5;
+    animation: aparecer 2s forwards; /* duración de la animación */
+    margin: 20px auto;
+  }
+  
+  @keyframes aparecer {
+    from {
+      height: 0;
+    }
+    to {
+      height: 100px; /* longitud de la línea */
+    }
+  }
 
 /* Estilos para las imágenes circulares */
 #menu img,
