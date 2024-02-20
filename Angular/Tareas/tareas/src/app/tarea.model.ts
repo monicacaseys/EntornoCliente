@@ -2,12 +2,12 @@ export class Tarea{
 
     nombre: String="";
     descripcion: String="";
-    importante: boolean=true;
+    urgente: boolean=true;
 
-    constructor (nombre:String, descripcion:String, importante:boolean){
+    constructor (nombre:String, descripcion:String, urgente:boolean){
         this.nombre=nombre;
         this.descripcion=descripcion;
-        this.importante=importante;
+        this.urgente=urgente;
     }
 }
 

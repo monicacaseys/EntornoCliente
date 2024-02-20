@@ -7,7 +7,28 @@
     height: 100vh;
   }
   .form-container {
-    width: 300px;
+    width: 400px;
+    background-color: #e9f0f6; 
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+  }
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  .list-container {
+    margin-top: 30px;
+  }
+  .col {
+    margin-top: 30px;
+  }
+  .list-container{
+    background-color: #f4e9f6; 
   }
 </style>
 
@@ -19,34 +40,43 @@
       <form id="task-form" class="form-container">
         <h2>Agrega tu tarea</h2>
         <div class="form-group">
-          <label for="nombre">Nombre:</label>
-          <input type="text" id="nombre" name="nombre" class="form-control" required>
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombreTarea" [(ngModel)]="nuevaTarea.nombre" name="nombreTarea" required placeholder="titulo">
         </div>
-<!-- los k tiene ng hay que ponerle name -->
+
         <div class="form-group">
-          <label for="descripcion">Descripción:</label>
-          <input type="text" id="descripcion" name="descripcion" class="form-control" required>
+          <label for="descripcion">Descripción</label>
+          <textarea id="descripcionTarea" [(ngModel)]="nuevaTarea.descripcion" name="descripcionTarea" placeholder="descripcion..."></textarea>
         </div>
 
         <div class="form-check">
-          <input type="checkbox" id="urgent" name="urgent" class="form-check-input">
           <label class="form-check-label" for="urgent">¿Es urgente?</label>
+          <select id="urgente" [(ngModel)]="nuevaTarea.urgente" name="urgente">
+            <option value="true">Sí</option>
+            <option value="false">No</option>
+          </select>
         </div>
+        <button type="submit" class="btn btn-primary" (click)="agregarTarea()" style="margin: 25px;">Añadir</button>
       </form>
-      <button type="submit" class="btn btn-primary"  style="margin: 25px;">Añadir</button>
+      
+     
     </div>
   </div>
   <div class="col">
     <h2>Lista de tareas</h2>
     <div class="list-container">
-      <div class="row">
-        <div class="col">
-          <div *ngFor="let tarea of tareas; let i=index">
-           {{i+1}} {{tarea.nombre}} {{tarea.descripcion}} {{tarea.importante}}
-          </div>
-        </div>
-      </div>
+      
+          <ul>
+            <li *ngFor="let tarea of tareas" [ngClass]="{ 'urgente': tarea.urgente }">
+              <h3>{{ tarea.nombre }}</h3>
+              <p>{{ tarea.descripcion }}</p>
+            </li>
+          </ul>
+      
     </div>
   </div>
 </div>
 </div>
+
+
+
