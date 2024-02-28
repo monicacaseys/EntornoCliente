@@ -1,0 +1,40 @@
+Cree un mpdelo para las tareas en vez de crear un nuevo componente, ya que es un proyecto sencillo sin mucha carga para procesar infromacion. Creando solo un modelo hacemos que el app.component.ts sea el componente principal del proyecto.
+
+
+Componente Angular: En Angular, tu ejercicio se basa en un componente que encapsula tanto la lógica de presentación (HTML y CSS) como la lógica de negocios (TypeScript) para manejar tareas.
+
+Estructura de Datos (Modelo): Defines una clase en TypeScript para representar la estructura de una tarea. Aunque se habla de "modelo" en el sentido de la estructura de datos, en realidad, este modelo se utiliza dentro del componente.
+
+Data Binding y Event Binding: Utilizas [(ngModel)] para el enlace bidireccional de datos entre tu formulario HTML y las propiedades de tu clase TypeScript. Utilizas (click) para manejar eventos, como agregar una nueva tarea.
+
+Listado y Estilos Condicionales: Usas *ngFor para iterar sobre el array de tareas y mostrarlas. Con [ngClass] aplicas estilos condicionales, por ejemplo, para resaltar tareas urgentes.
+
+Flujo de Datos: Al enviar el formulario, los datos ingresados se agregan a un array de tareas en tu componente TypeScript. Angular detecta los cambios en este array y actualiza la vista automáticamente.
+
+Estilos CSS: Aplicas estilos específicos mediante clases CSS en tu archivo de estilos del componente. Usas condiciones como [ngClass] para aplicar estilos dinámicamente basados en los datos de cada tarea.
+
+En resumen, tu ejercicio utiliza un componente de Angular para manejar el formulario de entrada, la lógica para agregar y listar tareas, y aplicar estilos condicionales basados en las propiedades de las tareas. Todo esto se realiza dentro de la arquitectura de componentes de Angular, utilizando enlaces de datos y eventos para crear una interfaz dinámica y reactiva.
+
+-----------------------------------------------------------otro mas largo----------------
+En tu ejercicio, se está utilizando un componente Angular para manejar tanto la presentación como la lógica de negocios para agregar, mostrar y posiblemente manipular tareas. La confusión podría haber surgido del uso del término "modelo" para referirse a la estructura de datos de la tarea, que es una práctica común en desarrollo pero no implica que estemos usando una arquitectura de modelo-vista-controlador (MVC) clásica o que estemos omitiendo el uso de componentes.
+
+Componente de Angular
+En Angular, un componente controla una parte de la pantalla llamada vista. Para tu lista de tareas, has creado un componente que gestiona tanto el formulario de entrada de la tarea como la lista de tareas mostradas. Este componente tiene:
+
+Template HTML: Define la estructura y el layout del formulario y la lista de tareas. Usas directivas como *ngFor para iterar sobre las tareas y mostrarlas, y enlazas eventos como (click) para manejar la adición de nuevas tareas.
+Clase TypeScript: Define la lógica de negocios, como la estructura de la tarea (modelo) con propiedades como nombre, descripcion y urgente, y métodos para agregar tareas a la lista.
+Decorador @Component: Asocia la metadata con la clase, incluyendo el template HTML y los estilos CSS específicos.
+Tratamiento de los Datos
+Los datos (tareas en este caso) se manejan completamente dentro del componente. Cuando agregas una nueva tarea a través del formulario:
+
+Los datos ingresados se enlazan a propiedades de la clase del componente mediante [(ngModel)].
+Al hacer clic en "Añadir", se invoca un método en la clase del componente que procesa estos datos (agrega la nueva tarea al array de tareas).
+La lista de tareas se actualiza automáticamente en la vista gracias a la detección de cambios de Angular, que observa las modificaciones en el array de tareas y re-renderiza la lista según sea necesario.
+Estilos Condicional
+El estilo condicional (por ejemplo, mostrar las tareas urgentes en rojo) se maneja mediante enlaces de clase con [ngClass], donde puedes añadir una clase CSS basada en una condición (en este caso, si la tarea es urgente).
+
+Conclusión
+En resumen, aunque tu ejercicio manipula "modelos" de datos (como la estructura de la tarea), todo se realiza dentro de un componente de Angular. Este componente gestiona la interfaz de usuario, la lógica de negocios, y la interacción del usuario, siguiendo el patrón de diseño que Angular promueve para construir aplicaciones web reactivas y modulares.
+
+
+
